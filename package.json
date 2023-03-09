@@ -1,0 +1,15 @@
+{
+  "name": "armarius-utils",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kurt Thiemann <kurt@thiemann.io>",
+  "license": "MIT",
+  "dependencies": {
+    "armarius": "^1.9.1"
+  }
+}
