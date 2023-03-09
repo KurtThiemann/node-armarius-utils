@@ -78,5 +78,4 @@ function endStream(stream) {
     });
 }
 
-await extract('./level.zip', {}, './level');
 
