@@ -6,7 +6,7 @@ import pathModule from "node:path";
 /**
  * @param {import("armarius").DataReader} reader
  * @param {import("armarius").ReadArchiveOptions|import("armarius").ReadArchiveOptionsObject} options
- * @return {Promise<ReadArchive>}
+ * @return {Promise<import("armarius").ReadArchive>}
  */
 export async function open(reader, options) {
     const archive = new ReadArchive(reader, options);
