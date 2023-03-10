@@ -10,6 +10,6 @@
   "author": "Kurt Thiemann <kurt@thiemann.io>",
   "license": "MIT",
   "dependencies": {
-    "armarius": "^1.9.1"
+    "armarius": "^1.10.0"
   }
 }
