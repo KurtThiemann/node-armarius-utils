@@ -37,19 +37,24 @@ export default class NodeFileReader extends BufferedDataReader {
      * @returns {Promise<Uint8Array>}
      */
     async readRaw(offset, length) {
-        if(this.blocked) {
-            throw new Error('Multiple simultaneous reads are not supported');
-        }
-        this.blocked = true;
-
         if (offset < 0) {
             throw new ArmariusError(`Cannot read at negative offsets (got ${offset})`);
         }
         if (offset + length > this.byteLength) {
             throw new ArmariusError(`Cannot read beyond end of data (trying to read ${length} bytes at ${offset}, data length is ${this.byteLength})`);
         }
+        if(this.blocked) {
+            throw new Error('Multiple simultaneous reads are not supported');
+        }
+        this.blocked = true;
+
         const data = Buffer.alloc(length);
-        await this.file.read({position: this.byteOffset + offset, length, buffer: data});
+        try {
+            await this.file.read({position: this.byteOffset + offset, length, buffer: data});
+        } catch (e) {
+            this.blocked = false;
+            throw e;
+        }
         this.blocked = false;
         return new Uint8Array(data.buffer, data.byteOffset, data.byteLength);
     }
