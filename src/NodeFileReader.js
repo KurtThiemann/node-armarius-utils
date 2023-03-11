@@ -50,6 +50,7 @@ export default class NodeFileReader extends BufferedDataReader {
         }
         const data = Buffer.alloc(length);
         await this.file.read({position: this.byteOffset + offset, length, buffer: data});
+        this.blocked = false;
         return new Uint8Array(data.buffer, data.byteOffset, data.byteLength);
     }
 
